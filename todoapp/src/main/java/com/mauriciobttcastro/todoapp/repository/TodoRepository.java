@@ -31,7 +31,7 @@ public class TodoRepository {
 		return todoItem;
 	}
 
-	public void delete(Integer id) {
+	public void delete (Integer id) {
 		todoItems = todoItems.stream()
 				.filter(todoItem -> !todoItem.getId().equals(id)).collect(Collectors.toList());
 		

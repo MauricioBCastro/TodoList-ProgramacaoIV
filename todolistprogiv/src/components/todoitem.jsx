@@ -9,13 +9,13 @@ const TodoItem = (props) => {
 
     useEffect(() => {
         if (isDirty) {
-            //ERROR Doesn't fetchs
+            //ERROR Doesn't fetch
                 fetch(`http://localhost:8080/api/todoItems/${todoItem.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(todoItem)
+                body: JSON.stringify(todoItem),
                 
             }).then((response) => response.json())
                 .then((data) => {

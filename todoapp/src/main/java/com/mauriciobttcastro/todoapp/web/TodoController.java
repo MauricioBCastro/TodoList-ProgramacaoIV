@@ -45,8 +45,6 @@ public class TodoController {
 	public ResponseEntity<?> updateTodoItem(@PathVariable Integer id, @RequestBody TodoItem todoItem) {
 		TodoItem updatedTodoItem = todoService.updateTodoItem(id, todoItem);
 		
-		
-		
 		return ResponseEntity.ok(updatedTodoItem);
 	}
 	

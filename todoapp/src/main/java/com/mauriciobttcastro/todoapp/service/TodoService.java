@@ -22,7 +22,7 @@ public class TodoService {
 	public TodoItem updateTodoItem(Integer id, TodoItem todoItem) {
 		Optional<TodoItem> todoOpt = todoRepo.fetchAllTodoItems()
 			.stream()
-			.filter(item -> item.getIsDone().equals(id))
+			.filter(item -> item.getId().equals(id))
 			.findAny();
 		System.out.println(todoOpt);
 		if (todoOpt.isPresent()) {
