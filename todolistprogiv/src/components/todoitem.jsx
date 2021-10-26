@@ -3,9 +3,9 @@ import { TextField, Checkbox } from '@material-ui/core';
 import './todoitem.css';
 
 const TodoItem = (props) => {
-    
-    const [todoItem, setTodoItem] = useState(props.data)
-    const [isDirty, setDirty] = useState(false)
+    const { emitDeleteTodoItem } = props;
+    const [todoItem, setTodoItem] = useState(props.data);
+    const [isDirty, setDirty] = useState(false);
 
     useEffect(() => {
         if (isDirty) {
@@ -15,7 +15,6 @@ const TodoItem = (props) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                
                 body: JSON.stringify(todoItem)
                 
             }).then((response) => response.json())
@@ -42,12 +41,9 @@ const TodoItem = (props) => {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-            },
-            
-        }).then((response) => response.json())
-            .then((data) => {
-            setDirty(false);
-            setTodoItem(data);
+            }
+        }).then((data) => {
+            emitDeleteTodoItem(todoItem);
         });
     }
 
@@ -68,7 +64,7 @@ const TodoItem = (props) => {
                 <TextField className="TextField" label="Task" variant="outlined" value={todoItem.task} onChange={updateTask}/>
             )}
             
-            <span style={{cursor: "pointer"}} onClick={deleteTodoItem} >🗑️</span>
+            <span style={{cursor: "pointer"}} onClick={deleteTodoItem}>🗑️</span>
         </div>
     );
 };

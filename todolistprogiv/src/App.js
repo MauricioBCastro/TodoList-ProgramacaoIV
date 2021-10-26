@@ -39,7 +39,7 @@ function App() {
   }
 
   function handleDeleTodoItem (item) {
-    const updatedTodoItems = todoItems.filter(aTodoItem => aTodoItem.id === item.id)
+    const updatedTodoItems = todoItems.filter(aTodoItem => aTodoItem.id !== item.id);
     setTodoItems([...updatedTodoItems]);
   }
 
@@ -54,7 +54,7 @@ function App() {
           <div className="task--items">
             {todoItems 
             ? todoItems.map((todoItem) => {
-                return <TodoItem key={todoItem.id} data={todoItem}/>;
+                return <TodoItem key={todoItem.id} data={todoItem} emitDeleteTodoItem={handleDeleTodoItem}/>;
               }) 
             : "loading data..."}
           </div>

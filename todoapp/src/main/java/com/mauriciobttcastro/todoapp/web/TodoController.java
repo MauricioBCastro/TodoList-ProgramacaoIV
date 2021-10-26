@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,11 +42,20 @@ public class TodoController {
 	
 	
 	@PutMapping("/api/todoItems/{id}")
-	public ResponseEntity<?> updateTodoItems (@PathVariable Integer id, @RequestBody TodoItem todoItem) {
+	public ResponseEntity<?> updateTodoItem(@PathVariable Integer id, @RequestBody TodoItem todoItem) {
 		TodoItem updatedTodoItem = todoService.updateTodoItem(id, todoItem);
 		
 		
 		
 		return ResponseEntity.ok(updatedTodoItem);
+	}
+	
+	
+	@DeleteMapping("/api/todoItems/{id}")
+	public ResponseEntity<?> deleteTodoItem(@PathVariable Integer id) {
+		todoService.deleteTodoItem(id);
+		
+		
+		return ResponseEntity.ok(null);
 	}
 }

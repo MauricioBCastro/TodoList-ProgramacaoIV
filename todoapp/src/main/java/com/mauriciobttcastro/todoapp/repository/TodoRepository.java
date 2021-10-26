@@ -2,6 +2,7 @@ package com.mauriciobttcastro.todoapp.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -28,5 +29,11 @@ public class TodoRepository {
 		todoItem.setId(idCounter++);
 		todoItems.add(todoItem);
 		return todoItem;
+	}
+
+	public void delete(Integer id) {
+		todoItems = todoItems.stream()
+				.filter(todoItem -> !todoItem.getId().equals(id)).collect(Collectors.toList());
+		
 	}
 }

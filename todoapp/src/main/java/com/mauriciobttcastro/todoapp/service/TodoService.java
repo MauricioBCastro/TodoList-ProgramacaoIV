@@ -44,4 +44,9 @@ public class TodoService {
 		
 		return todoItem;
 	}
+
+	public void deleteTodoItem(Integer id) {
+		todoRepo.delete(id);
+		
+	}
 }
