@@ -9,7 +9,6 @@ const TodoItem = (props) => {
 
     useEffect(() => {
         if (isDirty) {
-            console.log(todoItem);
             //ERROR Doesn't fetchs
                 fetch(`http://localhost:8080/api/todoItems/${todoItem.id}`, {
                 method: "PUT",
@@ -27,9 +26,31 @@ const TodoItem = (props) => {
         }
     }, [todoItem, isDirty])
 
-    function updateTask () {
-        setTodoItem({ ...todoItem, task: e.target.value});
+    /*useEffect(() => {
+        console.log(todoItem);
+    }, [todoItem]);
+    */
+
+
+    function updateTask(e) {
+        setDirty(true);
+        setTodoItem({ ...todoItem, task: e.target.value})
     }
+
+    function deleteTodoItem() {
+        fetch(`http://localhost:8080/api/todoItems/${todoItem.id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            
+        }).then((response) => response.json())
+            .then((data) => {
+            setDirty(false);
+            setTodoItem(data);
+        });
+    }
+
 
     return (
         <div>
@@ -41,7 +62,13 @@ const TodoItem = (props) => {
                     setTodoItem({...todoItem, isDone: !todoItem.isDone});
                 }}
             />
-            <TextField className="TextField" label="Task" variant="outlined" value={todoItem.task} onChange={updateTask} />
+            {todoItem.isDone ? (
+                <span>{todoItem.task}</span> 
+            ) : (
+                <TextField className="TextField" label="Task" variant="outlined" value={todoItem.task} onChange={updateTask}/>
+            )}
+            
+            <span style={{cursor: "pointer"}} onClick={deleteTodoItem} >🗑️</span>
         </div>
     );
 };

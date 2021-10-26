@@ -38,6 +38,11 @@ function App() {
     
   }
 
+  function handleDeleTodoItem (item) {
+    const updatedTodoItems = todoItems.filter(aTodoItem => aTodoItem.id === item.id)
+    setTodoItems([...updatedTodoItems]);
+  }
+
 
   return (
     <>
