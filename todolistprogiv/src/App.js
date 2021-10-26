@@ -27,13 +27,14 @@ function App() {
       headers: {
         "content-type": "application/json",
       },
-      method: "POST",
+      method: 'POST',
+      mode: 'cors',
+      cache: 'default'
+
     }).then(response => response.json())
     .then((aTodoItem) => {
       //todoItems.push(aTodoItem);
       setTodoItems([...todoItems, aTodoItem]);
-      console.log(aTodoItem)
-      console.log(todoItems)
     });
     
   }
@@ -46,17 +47,19 @@ function App() {
 
   return (
     <>
-      <div className="todo--list">
-        <div className="button--add">
-          <Button size="large" variant="outlined" onClick={addNewTodoItem}>Add a New Task</Button>
-        </div>
-        <div className="task--list">
-          <div className="task--items">
-            {todoItems 
-            ? todoItems.map((todoItem) => {
-                return <TodoItem key={todoItem.id} data={todoItem} emitDeleteTodoItem={handleDeleTodoItem}/>;
-              }) 
-            : "loading data..."}
+      <div className="page">
+        <div className="todo--list">
+          <div className="button--add">
+            <Button size="large" variant="outlined" onClick={addNewTodoItem}>Add a New Task</Button>
+          </div>
+          <div className="task--list">
+            <div className="task--items">
+              {todoItems 
+              ? todoItems.map((todoItem) => {
+                  return <TodoItem key={todoItem.id} data={todoItem} emitDeleteTodoItem={handleDeleTodoItem}/>;
+                }) 
+              : "loading data..."}
+            </div>
           </div>
         </div>
       </div>

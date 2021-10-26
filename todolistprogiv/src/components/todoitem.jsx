@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { TextField, Checkbox } from '@material-ui/core';
+import { TextField, Checkbox, IconButton, Tooltip } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
 import './todoitem.css';
+import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 
 const TodoItem = (props) => {
     const { emitDeleteTodoItem } = props;
     const [todoItem, setTodoItem] = useState(props.data);
     const [isDirty, setDirty] = useState(false);
+    /*const ValidationTextField = styled(TextField)({
+        '& input:valid + fieldset': {
+          borderColor: 'green',
+          borderWidth: 2,
+        }
+    });
+    */
 
     useEffect(() => {
         if (isDirty) {
             //ERROR Doesn't fetch
                 fetch(`http://localhost:8080/api/todoItems/${todoItem.id}`, {
-                method: "PUT",
+                method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(todoItem),
+                mode: 'cors',
+                cache: 'default',
+                body: JSON.stringify(todoItem)
                 
             }).then((response) => response.json())
                 .then((data) => {
@@ -47,7 +58,7 @@ const TodoItem = (props) => {
         });
     }
 
-
+    
     return (
         <div>
             <Checkbox 
@@ -61,10 +72,13 @@ const TodoItem = (props) => {
             {todoItem.isDone ? (
                 <span>{todoItem.task}</span> 
             ) : (
-                <TextField className="TextField" label="Task" variant="outlined" value={todoItem.task} onChange={updateTask}/>
+                <TextField className="TextField" size="small" id="filled-hidden-label-normal" label="Task" variant="filled" value={todoItem.task} onChange={updateTask}/>
             )}
-            
-            <span style={{cursor: "pointer"}} onClick={deleteTodoItem}>🗑️</span>
+            <Tooltip>
+                <IconButton onClick={deleteTodoItem}>
+                    <DeleteOutlineRoundedIcon />
+                </IconButton>
+            </Tooltip>
         </div>
     );
 };
