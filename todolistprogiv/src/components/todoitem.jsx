@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { TextField, Checkbox, IconButton, Tooltip } from '@material-ui/core';
-import { styled } from '@mui/material/styles';
 import './todoitem.css';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 
