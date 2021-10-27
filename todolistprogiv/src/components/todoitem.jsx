@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TextField, Checkbox, IconButton, Tooltip } from '@material-ui/core';
-import './todoitem.css';
+import { Checkbox, IconButton, Tooltip } from '@material-ui/core';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 
 const TodoItem = (props) => {
@@ -59,8 +58,9 @@ const TodoItem = (props) => {
 
     
     return (
-        <div>
-            <Checkbox 
+        <div className='flex flex-row w-full items-center'>
+            <Checkbox
+                className="border-white" 
                 //type='checkbox' 
                 checked={todoItem.isDone} 
                 onChange={() => {
@@ -69,13 +69,13 @@ const TodoItem = (props) => {
                 }}
             />
             {todoItem.isDone ? (
-                <span>{todoItem.task}</span> 
+                <p class="line-through w-full text-white" >{todoItem.task}</p> 
             ) : (
-                <TextField className="TextField" size="small" id="filled-hidden-label-normal" label="Task" variant="filled" value={todoItem.task} onChange={updateTask}/>
+                <input className="border border-gray-800 focus:border-blue-500 rounded w-full py-2 px-3 mr-4 text-black" size="small" id="filled-hidden-label-normal" label="Task" variant="filled" value={todoItem.task} onChange={updateTask}/>
             )}
             <Tooltip>
                 <IconButton onClick={deleteTodoItem}>
-                    <DeleteOutlineRoundedIcon />
+                    <DeleteOutlineRoundedIcon class='uppercase p-3 flex items-center bg-white hover:bg-gray-400 text-blue-50 max-w-max shadow-sm hover:shadow-lg rounded-full w-10 h-10' />
                 </IconButton>
             </Tooltip>
         </div>
