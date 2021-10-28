@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Checkbox, IconButton, Tooltip } from '@material-ui/core';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
+import AddCommentIcon from '@mui/icons-material/AddComment';
 
 const TodoItem = (props) => {
     const { emitDeleteTodoItem } = props;
@@ -56,7 +57,12 @@ const TodoItem = (props) => {
         });
     }
 
-    
+    /*
+    function changeList() {
+        
+    }
+    */
+
     return (
         <div className='flex flex-row w-full items-center'>
             <Checkbox
@@ -78,6 +84,11 @@ const TodoItem = (props) => {
                     <DeleteOutlineRoundedIcon class='uppercase p-3 flex items-center bg-white hover:bg-gray-400 text-blue-50 max-w-max shadow-sm hover:shadow-lg rounded-full w-10 h-10' />
                 </IconButton>
             </Tooltip>
+            <div className='Addcomment'>
+                <IconButton>
+                    <AddCommentIcon class='uppercase p-3 flex items-center bg-white hover:bg-gray-400 text-blue-50 max-w-max shadow-sm hover:shadow-lg rounded-full w-10 h-10' />
+                </IconButton>
+            </div>
         </div>
     );
 };

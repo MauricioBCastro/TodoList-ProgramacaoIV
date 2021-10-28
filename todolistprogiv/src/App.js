@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import TodoItem from "./components/todoitem";
 import "./components/todoitem.jsx";
+import modalComment from "./components/Modal/modalComment";
 
 function App() {
   const [todoItems, setTodoItems] = useState(null);
@@ -43,6 +44,7 @@ function App() {
 
   return (
     <div class="flex-col bg-gray-800 h-screen w-screen flex items-center justify-center">
+      {/* <!-- Todo List --> */}
       <div class="bg-gray-600 rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg md:max-w-2xl">
         <div class="mb-4">
           <div class="flex flex-row justify-between items-center mb-8">
@@ -80,6 +82,15 @@ function App() {
                   })
                 : "loading data..."}
             </div>
+          </div>
+        </div>
+      </div>
+      {/* <!-- Completed --> */}
+      <div class="w-full bg-gray-800 flex flex-col items-center justify-center font-sans md:max-w-2xl">
+        <div class="bg-gray-600 rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
+          <div class="mb-4">
+            <h1 class="text-white font-bold text-xl">Completed</h1>
+            <div class="flex mt-4 text-white">Completed todo here</div>
           </div>
         </div>
       </div>
