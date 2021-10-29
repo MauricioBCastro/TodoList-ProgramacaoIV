@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from "react";
 import TodoItem from "./components/todoitem";
 import "./components/todoitem.jsx";
-import modalComment from "./components/Modal/modalComment";
 
 function App() {
+  
   const [todoItems, setTodoItems] = useState(null);
+
 
   useEffect(() => {
     if (!todoItems) {
@@ -35,7 +36,7 @@ function App() {
       });
   }
 
-  function handleDeleTodoItem(item) {
+  async function handleDeleTodoItem(item) {
     const updatedTodoItems = todoItems.filter(
       (aTodoItem) => aTodoItem.id !== item.id
     );
@@ -68,7 +69,7 @@ function App() {
               </svg>
             </button>
           </div>
-          <div class="flex mt-4 flex-col ">
+          <div className="flex mt-4 flex-col ">
             <div className="flex-row space-y-4">
               {todoItems
                 ? todoItems.map((todoItem) => {
