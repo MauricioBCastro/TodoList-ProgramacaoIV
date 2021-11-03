@@ -4,9 +4,7 @@ import TodoItem from "./components/todoitem";
 import "./components/todoitem.jsx";
 
 function App() {
-  
   const [todoItems, setTodoItems] = useState(null);
-
 
   useEffect(() => {
     if (!todoItems) {
@@ -69,7 +67,7 @@ function App() {
               </svg>
             </button>
           </div>
-          <div className="flex mt-4 flex-col ">
+          <div className="flex mt-4 flex-col">
             <div className="flex-row space-y-4">
               {todoItems
                 ? todoItems.map((todoItem) => {
@@ -91,7 +89,7 @@ function App() {
         <div class="bg-gray-600 rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
           <div class="mb-4">
             <h1 class="text-white font-bold text-xl">Completed</h1>
-            <div class="flex mt-4 text-white">Completed todo here</div>
+            <div class="flex mt-4 text-white">xxxxxxxxxxxxxxx</div>
           </div>
         </div>
       </div>

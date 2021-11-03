@@ -13,8 +13,11 @@ function Modal({ closeModal }) {
   */
   return (
     <div class="h-screen flex items-center justify-center">
-      <div class="w-3/4 rounded-lg shadow-lg bg-blue-900">
-        <div class="border-b border-blue-400 text-blue-400" onClick={() => closeModal(false)}>
+      <div class="w-3/4 rounded-lg bg-gray-800 shadow">
+        <div
+          class="border-b border-white text-white"
+          onClick={() => closeModal(false)}
+        >
           <div class="p-4">X</div>
         </div>
 
@@ -39,7 +42,7 @@ function Modal({ closeModal }) {
             Cancel
           </button>
           <button
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-black-500 hover:border-transparent rounded"
             onClick={() => closeModal(false)}
           >
             Continue
