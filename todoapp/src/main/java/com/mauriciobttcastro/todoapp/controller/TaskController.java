@@ -1,10 +1,8 @@
-package com.mauriciobttcastro.todoapp.web;
+package com.mauriciobttcastro.todoapp.controller;
 
 import java.net.URI;
 import java.util.List;
 
-import com.sun.source.util.TaskListener;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,9 +44,8 @@ public class TaskController {
 	}
 
 	@PutMapping(value="/{id}" )
-	public ResponseEntity<Void> update(@RequestBody Task obj , @PathVariable Long id){
-		obj.setId(id);
-		obj = service.update(obj);
+	public ResponseEntity<Void> update(@RequestBody Task task , @PathVariable Long id){
+		service.update(task);
 		return ResponseEntity.noContent().build();
 
 	}

@@ -18,13 +18,15 @@ public class Project implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Column(name = "id_project")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Setter
     private String name;
 
     @OneToMany(
-            mappedBy = "project", targetEntity = Task.class,
+            mappedBy = "project",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )

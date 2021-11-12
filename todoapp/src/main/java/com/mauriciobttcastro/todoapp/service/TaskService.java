@@ -23,11 +23,7 @@ public class TaskService {
 	public List<Task> findAll() { return taskRepository.findAll(); }
 
 	public Task findByID(Long id) {
-		Optional<Task> categoriaOptional = taskRepository.findById(id);
-		if (categoriaOptional.isPresent()){
-			return categoriaOptional.get();
-		}
-		throw new EntityNotFoundException("Objeto não encontrado! Id" + id + " , Tipo :" + Task.class.getName());
+		return Optional.of(taskRepository.findById(id).get()).orElseThrow(() -> new EntityNotFoundException("Objeto não encontrado! Id" + id + " , Tipo :" + Task.class.getName()));
 	}
 
 	public Task save(Task categoria){
