@@ -7,7 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,17 +22,31 @@ public class Task implements Serializable {
 
 	@Id
 	@Setter
+	@Column(name = "id_task")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	@Setter
+	@NotNull
 	private String assunto;
 
 	@Setter
-	private Situation situation;
+	private Situation situation = Situation.NAO_INICIADA;
 
-	@ManyToOne
-	@JoinColumn(name="id_task")
+	@Setter
+	@NotNull
+	private LocalDate date ;
+
+	@OneToMany(
+			mappedBy = "task",
+			fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL
+	)
+	private List<TaskMessage> taskMessages;
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name="id_project")
 	private Project project;
+
 
 }
